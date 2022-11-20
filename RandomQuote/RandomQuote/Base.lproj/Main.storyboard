@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="RandomQuote" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dsi-HP-trC">
+                                <rect key="frame" x="0.0" y="47" width="390" height="763"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZZd-Dk-HrF">
+                                        <rect key="frame" x="0.0" y="0.0" width="390" height="1000"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="nw1-Dy-irW">
+                                                <rect key="frame" x="0.0" y="25" width="390" height="68.666666666666671"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CvE-cT-VfV">
+                                                        <rect key="frame" x="157.66666666666666" y="0.0" width="74.666666666666657" height="34.333333333333336"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JzO-ca-pG3">
+                                                        <rect key="frame" x="88.666666666666686" y="34.333333333333329" width="213" height="34.333333333333329"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Generate Random Quote"/>
+                                                        <connections>
+                                                            <action selector="generateRandomQuote:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rQH-hS-nrY"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="nw1-Dy-irW" secondAttribute="trailing" id="1JN-I3-GRk"/>
+                                            <constraint firstAttribute="height" constant="1000" id="E7v-Mg-0RW"/>
+                                            <constraint firstItem="nw1-Dy-irW" firstAttribute="leading" secondItem="ZZd-Dk-HrF" secondAttribute="leading" id="i4d-5f-b8k"/>
+                                            <constraint firstItem="nw1-Dy-irW" firstAttribute="top" secondItem="ZZd-Dk-HrF" secondAttribute="top" constant="25" id="mwN-bT-GVB"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="ZZd-Dk-HrF" firstAttribute="leading" secondItem="Dsi-HP-trC" secondAttribute="leading" id="07y-OO-rZr"/>
+                                    <constraint firstAttribute="bottom" secondItem="ZZd-Dk-HrF" secondAttribute="bottom" id="40y-QR-58Y"/>
+                                    <constraint firstAttribute="trailing" secondItem="ZZd-Dk-HrF" secondAttribute="trailing" id="8Nj-GN-7OF"/>
+                                    <constraint firstItem="ZZd-Dk-HrF" firstAttribute="top" secondItem="Dsi-HP-trC" secondAttribute="top" id="Gej-Xw-Y7C"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Dsi-HP-trC" secondAttribute="bottom" id="1LB-Ds-2PA"/>
+                            <constraint firstItem="Dsi-HP-trC" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Chf-gd-0Q0"/>
+                            <constraint firstItem="ZZd-Dk-HrF" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="HWG-BJ-Hhb"/>
+                            <constraint firstItem="Dsi-HP-trC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Nal-sH-9VX"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Dsi-HP-trC" secondAttribute="trailing" id="i1w-U5-WzT"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="quoteContentLabel" destination="CvE-cT-VfV" id="BpT-HG-nfG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="22" y="4"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
