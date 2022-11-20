@@ -6,13 +6,18 @@
 //
 
 import UIKit
+
+protocol SitterAddingViewControllerDelegate : AnyObject {
+    func didAddSitter()
+}
 class SitterAddingViewController: UIViewController {
 
     @IBOutlet weak var sitterNameTextField: UITextField!
     @IBOutlet weak var sitterGenderSegmentedControl: UISegmentedControl!
     @IBOutlet weak var sitterExperienceTextField: UITextField!
     var zoo: ZooImpl?
-    
+    weak var delegate: SitterAddingViewControllerDelegate?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +48,7 @@ class SitterAddingViewController: UIViewController {
               let experience = sitterExperienceTextField.text,
               !experience.isEmpty
         else {
-            showAlert(title: "Empty Field", message: "You need to fill each field", completion: nil)
+            showAlert(title: "Sitter not added", message: "You need to fill each field")
             return
         }
         let newSitter = Sitter(
@@ -55,7 +60,8 @@ class SitterAddingViewController: UIViewController {
         zoo?.add(sitter: newSitter) { result in
             switch result {
             case .success(let sitter):
-                self.showAlert(title: "New Sitter", message: "\(sitter.name) added successfully.") {
+                self.delegate?.didAddSitter()
+                self.showAlert(title: "New Sitter", message: "\(sitter.name) added successfully with salary: \(sitter.salary)") {
                     self.navigationController?.popViewController(animated: true)
                 }
             case .failure(let error):

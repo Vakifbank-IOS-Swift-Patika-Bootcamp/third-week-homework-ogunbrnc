@@ -34,7 +34,7 @@ class CompanyViewController: UIViewController {
     @IBAction func addIncome(_ sender: Any) {
         //Buradaki inputu ele almayı sor.
         guard incomeOrExpenseTextField.text != "" else {
-            self.showAlert(title: "Income not added", message: "Text field can not be empty.",completion: nil)
+            self.showAlert(title: "Income not added", message: "Text field can not be empty.")
             return
         }
         let doubleValue = Double(incomeOrExpenseTextField.text!)
@@ -43,15 +43,17 @@ class CompanyViewController: UIViewController {
             case .success(let budget):
                 self.budgetAmountLabel.text = "\(budget) $"
                 self.incomeOrExpenseTextField.text = ""
+                self.showAlert(title: "Income added", message: "New budget is: \(budget)")
+
             case .failure(let error):
-                self.showAlert(title: "Income not added", message: error.localizedDescription,completion: nil)
+                self.showAlert(title: "Income not added", message: error.localizedDescription)
             }
         }
     }
     
     @IBAction func addExpense(_ sender: Any) {
         guard incomeOrExpenseTextField.text != "" else {
-            self.showAlert(title: "Expense not added", message: "Text field can not be empty.",completion: nil)
+            self.showAlert(title: "Expense not added", message: "Text field can not be empty.")
             return
         }
         let doubleValue = Double(incomeOrExpenseTextField.text!)
@@ -60,30 +62,33 @@ class CompanyViewController: UIViewController {
             case .success(let budget):
                 self.budgetAmountLabel.text = "\(budget) $"
                 self.incomeOrExpenseTextField.text = ""
+                self.showAlert(title: "Expense added", message: "New budget is: \(budget)")
+
             case .failure(let error):
-                self.showAlert(title: "Expense not added", message: error.localizedDescription,completion: nil)
+                self.showAlert(title: "Expense not added", message: error.localizedDescription)
             }
         }
     }
     
     @IBAction func paySalaries(_ sender: Any) {
         if (company.employees?.isEmpty)! {
-            showAlert(title: "No Employee", message: "There is no employee to pay salary.",completion: nil)
+            showAlert(title: "No Employee", message: "There is no employee to pay salary.")
             return
         }
         company.paySalaries { result in
             switch result {
             case .success(let budget):
                 self.budgetAmountLabel.text = "\(budget) $"
+                self.showAlert(title: "Salaries paid.", message: "New budget is: \(budget)")
             case .failure(let error):
-                self.showAlert(title: "Salaries not paid.", message: error.localizedDescription,completion: nil)
+                self.showAlert(title: "Salaries not paid.", message: error.localizedDescription)
             }
         }
     }
     
     @IBAction func navigateShowEmployees(_ sender: Any) {
         if (company.employees?.isEmpty)! {
-            self.showAlert(title: "No employee", message: "There is no employee to list.",completion: nil)
+            self.showAlert(title: "No employee", message: "There is no employee to list.")
             return
         }
         

@@ -47,13 +47,14 @@ class AnimalAddingViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+    //Restriction: all fields should be filled.
     @IBAction func addAnimal(_ sender: Any) {
         guard let animalType: AnimalType = AnimalType(rawValue: animalTypeSegmentedControl.selectedSegmentIndex),
               let name = animalNameTextField.text,
               !name.isEmpty,
               let waterConsumption = Double(waterConsumptionTextField.text!)
         else {
-            showAlert(title: "Empty Field", message: "You need to fill each field", completion: nil)
+            showAlert(title: "Animal not added", message: "You need to fill each field")
             return
         }
         

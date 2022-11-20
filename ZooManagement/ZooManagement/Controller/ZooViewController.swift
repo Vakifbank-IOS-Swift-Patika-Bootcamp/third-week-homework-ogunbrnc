@@ -8,7 +8,6 @@
 import UIKit
 
 class ZooViewController: UIViewController {
-
     @IBOutlet weak var zooNameLabel: UILabel!
     @IBOutlet weak var budgetAmountLabel: UILabel!
     @IBOutlet weak var totalSalaryAmountLabel: UILabel!
@@ -50,7 +49,7 @@ class ZooViewController: UIViewController {
         }))
         self.present(alert, animated: true, completion: nil)
     }
-
+    
     @IBAction func paySalaries(_ sender: Any) {
         
         if (zoo.sitters.isEmpty) {
@@ -61,6 +60,7 @@ class ZooViewController: UIViewController {
         zoo.paySalaries { result in
             switch result {
             case .success(let budget):
+                self.showAlert(title: "Salaries paid", message: "Salaries paid successfully, new budget is: \(budget)")
                 self.budgetAmountLabel.text = "\(budget) $"
             case .failure(let error):
                 self.showAlert(title: "Salaries not paid", message: error.localizedDescription)
@@ -80,6 +80,8 @@ class ZooViewController: UIViewController {
             case .success(let newWaterLimit):
                 self.waterLimitLabel.text = "\(newWaterLimit)"
                 self.increaseWaterLimitTextField.text = ""
+                self.showAlert(title: "Water limit increased", message: "New water limit is:\(newWaterLimit)")
+
             case .failure(let error):
                 self.showAlert(title: "Water limit not increased.", message: error.localizedDescription)
 
@@ -97,6 +99,7 @@ class ZooViewController: UIViewController {
             case .success(let budget):
                 self.budgetAmountLabel.text = "\(budget) $"
                 self.addIncomeOrExpenseTextField.text = ""
+                self.showAlert(title: "Income added.", message: "New budget is: \(budget)")
             case .failure(let error):
                 self.showAlert(title: "Income not added.", message: error.localizedDescription)
             }
@@ -113,6 +116,7 @@ class ZooViewController: UIViewController {
             case .success(let budget):
                 self.budgetAmountLabel.text = "\(budget) $"
                 self.addIncomeOrExpenseTextField.text = ""
+                self.showAlert(title: "Expense added.", message: "New budget is: \(budget)")
             case .failure(let error):
                 self.showAlert(title: "Expense not added.", message: error.localizedDescription)
 
@@ -134,9 +138,10 @@ class ZooViewController: UIViewController {
             fatalError("View Controller not found")
         }
         addingSitterView.zoo = zoo
+        addingSitterView.delegate = self
         navigationController?.pushViewController(addingSitterView, animated: true)
     }
-    
+    //Restriction: if there is no animal or sitter, will not navigate to listing page.
     @IBAction func navigateListingPage(_ sender: Any) {
         if (zoo.animals.isEmpty) && (zoo.sitters.isEmpty) {
             self.showAlert(title: "No animal and sitter", message: "There is no animal and sitter.")
@@ -146,9 +151,10 @@ class ZooViewController: UIViewController {
         guard let listingAnimalSitterView = self.storyboard?.instantiateViewController(withIdentifier: "AnimalSitterListingViewController") as? AnimalSitterListingViewController else {
             fatalError("View Controller not found")
         }
-        listingAnimalSitterView.animalSitterList = SearchResult(animals: zoo.animals, sitters: zoo.sitters)
+        listingAnimalSitterView.animalSitterList = TableViewResult  (animals: zoo.animals, sitters: zoo.sitters)
         navigationController?.pushViewController(listingAnimalSitterView, animated: true)
     }
+    //Restriction: if there is no animal without sitter, will not navigate to assigning page.
     @IBAction func navigateAssigningPage(_ sender: Any) {
         let animalsWithoutSitter = zoo.animals.filter {$0.sitter == nil}
         if animalsWithoutSitter.isEmpty {
@@ -172,16 +178,23 @@ class ZooViewController: UIViewController {
     }
     
 }
+//When new sitter added, totalSalaryAmountLabel will update.
+extension ZooViewController: SitterAddingViewControllerDelegate {
+    func didAddSitter() {
+        totalSalaryAmountLabel.text = "\(zoo.totalSalaries) $"
+    }
+}
+//When new animal added, totalWaterConsumptionLabel will update.
 
 extension ZooViewController: AnimalAddingViewControllerDelegate {
     func didAddNewAnimal(_ animal: Animal) {
         totalWaterConsumptionLabel.text = "\(zoo.totalWaterConsumption)"
     }
 }
+//When sitter is assigned to animal, totalSalaryAmountLabel will update.
 
 extension ZooViewController: SitterAssigningViewControllerDelegate {
     func didAssignedSitter() {
         totalSalaryAmountLabel.text = "\(zoo.totalSalaries) $"
-
     }
 }

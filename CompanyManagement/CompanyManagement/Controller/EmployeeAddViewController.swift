@@ -63,7 +63,7 @@ class EmployeeAddViewController: UIViewController {
               !name.isEmpty,
               let age = Int(ageTextField.text!)
         else {
-            showAlert(title: "Empty Field", message: "You need to fill each field", completion: nil)
+            showAlert(title: "Employee not added", message: "You need to fill each field correctly")
             return
         }
         
@@ -84,7 +84,7 @@ class EmployeeAddViewController: UIViewController {
                     self.delegate?.didAddNewEmployeee(employee)
                 }
             case .failure(let error):
-                self.showAlert(title: "Not Added", message: error.localizedDescription, completion: nil)
+                self.showAlert(title: "Employee Not Added", message: error.localizedDescription)
             }
         }
     }

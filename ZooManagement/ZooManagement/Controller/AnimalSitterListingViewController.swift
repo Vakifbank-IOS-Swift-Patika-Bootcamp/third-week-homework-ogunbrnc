@@ -7,14 +7,16 @@
 
 import UIKit
 
-struct SearchResult {
+//animalSitterTableView has 2 sections to list animals and sitters.
+
+struct TableViewResult {
     let animals: [Animal]
     let sitters: [Sitter]
 }
-enum SearchResultType: Int {
+enum TableViewResultType: Int {
     case animal = 0
     case sitters = 1
-    static var count: Int { return SearchResultType.sitters.rawValue + 1}
+    static var count: Int { return TableViewResultType.sitters.rawValue + 1}
     var header: String {
         switch self {
         case .animal:
@@ -28,7 +30,7 @@ enum SearchResultType: Int {
 class AnimalSitterListingViewController: UIViewController {
     
     @IBOutlet weak var animalSitterTableView: UITableView!
-    var animalSitterList: SearchResult?
+    var animalSitterList: TableViewResult?
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
@@ -44,11 +46,11 @@ class AnimalSitterListingViewController: UIViewController {
 
 extension AnimalSitterListingViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return SearchResultType.count
+        return TableViewResultType.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let type = SearchResultType(rawValue: section)
+        let type = TableViewResultType(rawValue: section)
         switch type {
             case .animal:
                 return animalSitterList!.animals.count
@@ -59,7 +61,7 @@ extension AnimalSitterListingViewController: UITableViewDelegate, UITableViewDat
         }
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let type = SearchResultType(rawValue: section)
+        let type = TableViewResultType(rawValue: section)
         return type?.header
     }
     
@@ -67,7 +69,7 @@ extension AnimalSitterListingViewController: UITableViewDelegate, UITableViewDat
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 20))
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = SearchResultType(rawValue: section)?.header
+        label.text = TableViewResultType(rawValue: section)?.header
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         
       
@@ -81,7 +83,7 @@ extension AnimalSitterListingViewController: UITableViewDelegate, UITableViewDat
         return headerView
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let type = SearchResultType(rawValue: indexPath.section)
+        let type = TableViewResultType(rawValue: indexPath.section)
         switch type {
         case .animal:
             let animal = animalSitterList?.animals[indexPath.row]
@@ -104,7 +106,7 @@ extension AnimalSitterListingViewController: UITableViewDelegate, UITableViewDat
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let type = SearchResultType(rawValue: indexPath.section)
+        let type = TableViewResultType(rawValue: indexPath.section)
         if type == .animal {
             if let animal: Speakable = animalSitterList?.animals[indexPath.row] as? Speakable {
                 animal.speak()

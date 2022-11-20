@@ -75,7 +75,7 @@ class SitterAssigningViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
 
-    
+    //Restriction: All fields should be filled.
     @IBAction func assignButtonClicked(_ sender: Any) {
         var sitter = sitters![selectedSitterRow]
         var animal = animals![selectedAnimalRow]
