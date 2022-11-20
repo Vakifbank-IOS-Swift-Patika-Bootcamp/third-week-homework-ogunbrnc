@@ -7,14 +7,14 @@
 
 import UIKit
 
-class ZooViewController: UIViewController {
-    @IBOutlet weak var zooNameLabel: UILabel!
-    @IBOutlet weak var budgetAmountLabel: UILabel!
-    @IBOutlet weak var totalSalaryAmountLabel: UILabel!
-    @IBOutlet weak var waterLimitLabel: UILabel!
-    @IBOutlet weak var totalWaterConsumptionLabel: UILabel!
-    @IBOutlet weak var increaseWaterLimitTextField: UITextField!
-    @IBOutlet weak var addIncomeOrExpenseTextField: UITextField!
+final class ZooViewController: UIViewController {
+    @IBOutlet private weak var zooNameLabel: UILabel!
+    @IBOutlet private weak var budgetAmountLabel: UILabel!
+    @IBOutlet private weak var totalSalaryAmountLabel: UILabel!
+    @IBOutlet private weak var waterLimitLabel: UILabel!
+    @IBOutlet private weak var totalWaterConsumptionLabel: UILabel!
+    @IBOutlet private weak var increaseWaterLimitTextField: UITextField!
+    @IBOutlet private weak var addIncomeOrExpenseTextField: UITextField!
     private var zoo = ZooImpl(name: "Birinci Zoo", waterLimit: 15, budget: 20_000, animals: [], sitters: [])
     
     override func viewDidLoad() {
@@ -50,7 +50,7 @@ class ZooViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    @IBAction func paySalaries(_ sender: Any) {
+    @IBAction private func paySalaries(_ sender: Any) {
         
         if (zoo.sitters.isEmpty) {
             showAlert(title: "No Sitter", message: "There is no sitter to pay salary.")
@@ -68,7 +68,7 @@ class ZooViewController: UIViewController {
         }
     }
     
-    @IBAction func increaseWaterLimit(_ sender: Any) {
+    @IBAction private func increaseWaterLimit(_ sender: Any) {
         guard increaseWaterLimitTextField.text != "" else {
             self.showAlert(title: "Water limit not added", message: "Text field can not be empty.")
             return
@@ -88,7 +88,7 @@ class ZooViewController: UIViewController {
             }
         }
     }
-    @IBAction func addIncome(_ sender: Any) {
+    @IBAction private func addIncome(_ sender: Any) {
         guard addIncomeOrExpenseTextField.text != "" else {
             self.showAlert(title: "Income not added", message: "Text field can not be empty.")
             return
@@ -105,7 +105,7 @@ class ZooViewController: UIViewController {
             }
         }
     }
-    @IBAction func addExpense(_ sender: Any) {
+    @IBAction private func addExpense(_ sender: Any) {
         guard addIncomeOrExpenseTextField.text != "" else {
             self.showAlert(title: "Expense not added", message: "Text field can not be empty.")
             return
@@ -124,7 +124,7 @@ class ZooViewController: UIViewController {
         }
     }
     
-    @IBAction func navigateAddingAnimalPage(_ sender: Any) {
+    @IBAction private func navigateAddingAnimalPage(_ sender: Any) {
         guard let addingAnimalView = self.storyboard?.instantiateViewController(withIdentifier: "AnimalAddingViewController") as? AnimalAddingViewController else {
             fatalError("View Controller not found")
         }
@@ -133,7 +133,7 @@ class ZooViewController: UIViewController {
         navigationController?.pushViewController(addingAnimalView, animated: true)
     }
     
-    @IBAction func navigateAddingSitterPage(_ sender: Any) {
+    @IBAction private func navigateAddingSitterPage(_ sender: Any) {
         guard let addingSitterView = self.storyboard?.instantiateViewController(withIdentifier: "SitterAddingViewController") as? SitterAddingViewController else {
             fatalError("View Controller not found")
         }
@@ -142,7 +142,7 @@ class ZooViewController: UIViewController {
         navigationController?.pushViewController(addingSitterView, animated: true)
     }
     //Restriction: if there is no animal or sitter, will not navigate to listing page.
-    @IBAction func navigateListingPage(_ sender: Any) {
+    @IBAction private func navigateListingPage(_ sender: Any) {
         if (zoo.animals.isEmpty) && (zoo.sitters.isEmpty) {
             self.showAlert(title: "No animal and sitter", message: "There is no animal and sitter.")
             return
@@ -155,7 +155,7 @@ class ZooViewController: UIViewController {
         navigationController?.pushViewController(listingAnimalSitterView, animated: true)
     }
     //Restriction: if there is no animal without sitter, will not navigate to assigning page.
-    @IBAction func navigateAssigningPage(_ sender: Any) {
+    @IBAction private func navigateAssigningPage(_ sender: Any) {
         let animalsWithoutSitter = zoo.animals.filter {$0.sitter == nil}
         if animalsWithoutSitter.isEmpty {
             self.showAlert(title: "No animal", message: "There is no animal without sitter.")
@@ -188,6 +188,7 @@ extension ZooViewController: SitterAddingViewControllerDelegate {
 
 extension ZooViewController: AnimalAddingViewControllerDelegate {
     func didAddNewAnimal(_ animal: Animal) {
+        waterLimitLabel.text = "\(zoo.waterLimit)"
         totalWaterConsumptionLabel.text = "\(zoo.totalWaterConsumption)"
     }
 }

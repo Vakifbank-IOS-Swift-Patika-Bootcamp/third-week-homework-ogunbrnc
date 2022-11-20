@@ -27,10 +27,11 @@ enum TableViewResultType: Int {
     }
 }
 
-class AnimalSitterListingViewController: UIViewController {
+final class AnimalSitterListingViewController: UIViewController {
     
-    @IBOutlet weak var animalSitterTableView: UITableView!
+    @IBOutlet private weak var animalSitterTableView: UITableView!
     var animalSitterList: TableViewResult?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()

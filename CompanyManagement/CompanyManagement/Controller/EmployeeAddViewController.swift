@@ -11,16 +11,16 @@ protocol EmployeeAddViewControllerDelegate: AnyObject {
     func didAddNewEmployeee(_ employee: EmployeeImpl)
 }
 
-class EmployeeAddViewController: UIViewController {
+final class EmployeeAddViewController: UIViewController {
     @IBOutlet private weak var nameAndSurnameTextField: UITextField!
     @IBOutlet private weak var ageTextField: UITextField!
     @IBOutlet private weak var employeeTypeSegmentedControl: UISegmentedControl!
-    @IBOutlet weak var employeeGenderSegmentedControl: UISegmentedControl!
-    @IBOutlet weak var employeeMaritalStatusSegmentedControl: UISegmentedControl!
-    @IBOutlet weak var employeeFieldTextField: UITextField!
+    @IBOutlet private weak var employeeGenderSegmentedControl: UISegmentedControl!
+    @IBOutlet private weak var employeeMaritalStatusSegmentedControl: UISegmentedControl!
+    @IBOutlet private weak var employeeFieldTextField: UITextField!
     
-    var employeeFieldPickerView = ToolbarPickerView()
-    var employeeField : Field?
+    private var employeeFieldPickerView = ToolbarPickerView()
+    private var employeeField : Field?
     
     var company: CompanyImpl?
     weak var delegate: EmployeeAddViewControllerDelegate?
@@ -53,7 +53,7 @@ class EmployeeAddViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    @IBAction func addNewEmployee(_ sender: Any) {
+    @IBAction private func addNewEmployee(_ sender: Any) {
         
         guard let employeeType: EmployeeType = EmployeeType(rawValue: employeeTypeSegmentedControl.selectedSegmentIndex),
               let employeeGender: Gender = Gender(rawValue: employeeGenderSegmentedControl.selectedSegmentIndex),

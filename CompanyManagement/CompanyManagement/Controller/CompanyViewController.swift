@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CompanyViewController: UIViewController {
+final class CompanyViewController: UIViewController {
     
     @IBOutlet private weak var companyNameLabel: UILabel!
     @IBOutlet private weak var budgetAmountLabel: UILabel!
@@ -31,7 +31,7 @@ class CompanyViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    @IBAction func addIncome(_ sender: Any) {
+    @IBAction private func addIncome(_ sender: Any) {
         //Buradaki inputu ele almayı sor.
         guard incomeOrExpenseTextField.text != "" else {
             self.showAlert(title: "Income not added", message: "Text field can not be empty.")
@@ -51,7 +51,7 @@ class CompanyViewController: UIViewController {
         }
     }
     
-    @IBAction func addExpense(_ sender: Any) {
+    @IBAction private func addExpense(_ sender: Any) {
         guard incomeOrExpenseTextField.text != "" else {
             self.showAlert(title: "Expense not added", message: "Text field can not be empty.")
             return
@@ -70,7 +70,7 @@ class CompanyViewController: UIViewController {
         }
     }
     
-    @IBAction func paySalaries(_ sender: Any) {
+    @IBAction private func paySalaries(_ sender: Any) {
         if (company.employees?.isEmpty)! {
             showAlert(title: "No Employee", message: "There is no employee to pay salary.")
             return
@@ -86,7 +86,7 @@ class CompanyViewController: UIViewController {
         }
     }
     
-    @IBAction func navigateShowEmployees(_ sender: Any) {
+    @IBAction private func navigateShowEmployees(_ sender: Any) {
         if (company.employees?.isEmpty)! {
             self.showAlert(title: "No employee", message: "There is no employee to list.")
             return
@@ -99,7 +99,7 @@ class CompanyViewController: UIViewController {
         navigationController?.pushViewController(showEmployeesView, animated: true)
     }
     
-    @IBAction func navigateToAddNewEmployee(_ sender: Any) {
+    @IBAction private func navigateToAddNewEmployee(_ sender: Any) {
         guard let addEmployeeView = self.storyboard?.instantiateViewController(withIdentifier: "EmployeeAddViewController") as? EmployeeAddViewController else {
             fatalError("View Controller not found")
         }

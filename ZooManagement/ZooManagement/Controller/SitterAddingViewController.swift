@@ -10,11 +10,11 @@ import UIKit
 protocol SitterAddingViewControllerDelegate : AnyObject {
     func didAddSitter()
 }
-class SitterAddingViewController: UIViewController {
+final class SitterAddingViewController: UIViewController {
 
-    @IBOutlet weak var sitterNameTextField: UITextField!
-    @IBOutlet weak var sitterGenderSegmentedControl: UISegmentedControl!
-    @IBOutlet weak var sitterExperienceTextField: UITextField!
+    @IBOutlet private weak var sitterNameTextField: UITextField!
+    @IBOutlet private weak var sitterGenderSegmentedControl: UISegmentedControl!
+    @IBOutlet private weak var sitterExperienceTextField: UITextField!
     var zoo: ZooImpl?
     weak var delegate: SitterAddingViewControllerDelegate?
 
@@ -41,7 +41,7 @@ class SitterAddingViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
 
-    @IBAction func addSitter(_ sender: Any) {
+    @IBAction private func addSitter(_ sender: Any) {
         guard let gender: Gender = Gender(rawValue: sitterGenderSegmentedControl.selectedSegmentIndex),
             let name = sitterNameTextField.text,
               !name.isEmpty,

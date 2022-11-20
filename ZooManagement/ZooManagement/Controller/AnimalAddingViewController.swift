@@ -11,12 +11,12 @@ protocol AnimalAddingViewControllerDelegate: AnyObject {
     func didAddNewAnimal(_ animal: Animal)
 }
 
-class AnimalAddingViewController: UIViewController {
+final class AnimalAddingViewController: UIViewController {
 
     
-    @IBOutlet weak var animalNameTextField: UITextField!
-    @IBOutlet weak var waterConsumptionTextField: UITextField!
-    @IBOutlet weak var animalTypeSegmentedControl: UISegmentedControl!
+    @IBOutlet private weak var animalNameTextField: UITextField!
+    @IBOutlet private weak var waterConsumptionTextField: UITextField!
+    @IBOutlet private weak var animalTypeSegmentedControl: UISegmentedControl!
     
     weak var delegate: AnimalAddingViewControllerDelegate?
     
@@ -48,7 +48,7 @@ class AnimalAddingViewController: UIViewController {
     }
     
     //Restriction: all fields should be filled.
-    @IBAction func addAnimal(_ sender: Any) {
+    @IBAction private func addAnimal(_ sender: Any) {
         guard let animalType: AnimalType = AnimalType(rawValue: animalTypeSegmentedControl.selectedSegmentIndex),
               let name = animalNameTextField.text,
               !name.isEmpty,

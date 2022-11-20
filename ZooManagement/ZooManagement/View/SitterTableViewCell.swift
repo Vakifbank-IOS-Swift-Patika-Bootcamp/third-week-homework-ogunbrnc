@@ -7,12 +7,13 @@
 
 import UIKit
 
+
 class SitterTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var sitterNameLabel: UILabel!
-    @IBOutlet weak var sitterSalaryLabel: UILabel!
-    @IBOutlet weak var sitterAnimalsLabel: UILabel!
-    @IBOutlet weak var sitterImageLabel: UILabel!
+    @IBOutlet private weak var sitterNameLabel: UILabel!
+    @IBOutlet private weak var sitterSalaryLabel: UILabel!
+    @IBOutlet private weak var sitterAnimalsLabel: UILabel!
+    @IBOutlet private weak var sitterImageLabel: UILabel!
     
     @IBOutlet weak var sitterExperienceLabel: UILabel!
     override func awakeFromNib() {
@@ -22,7 +23,6 @@ class SitterTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
     func configure(modal: Sitter) {

@@ -11,27 +11,26 @@ protocol SitterAssigningViewControllerDelegate : AnyObject {
     func didAssignedSitter()
 }
 
-class SitterAssigningViewController: UIViewController {
+final class SitterAssigningViewController: UIViewController {
     
     var animals: [Animal]?
     var sitters: [Sitter]?
     var zoo: ZooImpl?
-    var selectedSitterRow: Int = 0
-    var selectedAnimalRow: Int = 0
-    var sitterOptions: [String] = []
-    var animalOptions: [String] = []
-    var sitterPickerView = ToolbarPickerView()
-    var animalPickerView = ToolbarPickerView()
+    private var selectedSitterRow: Int = 0
+    private var selectedAnimalRow: Int = 0
+    private var sitterOptions: [String] = []
+    private var animalOptions: [String] = []
+    private var sitterPickerView = ToolbarPickerView()
+    private var animalPickerView = ToolbarPickerView()
     
-    @IBOutlet weak var animalTextField: UITextField!
-    @IBOutlet weak var sitterTextField: UITextField!
+    @IBOutlet private weak var animalTextField: UITextField!
+    @IBOutlet private weak var sitterTextField: UITextField!
     
     weak var delegate: SitterAssigningViewControllerDelegate?
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
+    
         configureTextFields()
         configurePickerviews()
 
@@ -76,7 +75,7 @@ class SitterAssigningViewController: UIViewController {
     }
 
     //Restriction: All fields should be filled.
-    @IBAction func assignButtonClicked(_ sender: Any) {
+    @IBAction private func assignButtonClicked(_ sender: Any) {
         var sitter = sitters![selectedSitterRow]
         var animal = animals![selectedAnimalRow]
         zoo?.assign(animal: &animal, sitter: &sitter){ result in

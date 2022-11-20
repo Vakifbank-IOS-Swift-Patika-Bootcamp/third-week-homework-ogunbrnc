@@ -7,10 +7,10 @@
 
 import UIKit
 
-class EmployeeListViewController: UIViewController {
+final class EmployeeListViewController: UIViewController {
 
     private let searchController = UISearchController()
-    @IBOutlet weak var employeeListTableView: UITableView!
+    @IBOutlet private weak var employeeListTableView: UITableView!
     var employees: [EmployeeImpl]?
     var filteredEmployees: [EmployeeImpl]?
     
