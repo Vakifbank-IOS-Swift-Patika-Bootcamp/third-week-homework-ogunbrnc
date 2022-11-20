@@ -1,69 +1,59 @@
 # Third-Week-Homework
-1- Şirket Playground Yazılımının Xcode ile projelendirilmesi yapılacaktır. Aşağıdaki özelliklerin bulunması gerekmektedir:
+1- Şirket Yazılımdaki Kısıtlamalar
 --
 <pre>
 • Giriş Ekranında;
 
-◦ Şirketin bilgileri yer almalıdır.
-◦ Şirket gelir gider eklemeleri bu ekrandan yapılabilmelidir.
-◦ Şirket maaş ödemesi bu ekrandan yapılabilmelidir.
-◦ Çalışan ekle butonu olmalıdır.(Çalışan ekleme ekranı açılmalı)
-◦ Çalışan listele butonu olmalı.(Çalışan listesi ekranı açılmalı)
+
+◦ Şirket gelir gider eklemeleri yapılırken pozitif değer girilmelidir. Ayrıca gider için bütçenin yeterli olması gerekir.
+◦ Şirket maaş ödemesi en az bir çalışan olduğunda ve bütçe yeterli olduğunda yapılmaktadır.  
+◦ Çalışan listele sayfasına en az bir çalışan olduğunda gidilebilir.
 
 • Çalışan Ekleme Ekranında;
 
-◦ Çalışan bilgileri girilecektir.(İsim, yaş, çalışan türü vs)
-◦ Çalışan maaşı otomatik hesaplanıp ekranda gösterilecektir.
-◦ Çalışan ekle yapıldığında şirket ekranına yönlenmelidir.
-◦ Bu ekranda UIStackView kullanılmalıdır.
+◦ Çalışan bilgilerinin hepsi girilmelidir.
+◦ Çalışan maaşı otomatik hesaplanıp, çalışan eklendiğinde alert şeklinde gösterilir.
 
 • Çalışan Listesi Ekranında;
 
-◦ Çalışanlar listelenmelidir.
-◦ UITableView veya UICollectionView kullanılmalıdır.
-◦ Çalışanlar arasında isimden arama yapılabilmelidir.
+◦ Çalışanlar arasında isim veya soyisimden arama yapılabilir.
 </pre>
 
-2- Hayvanat bahçesi Playground yazılımının Xcode ile projelendirilmesi yapılacaktır. Aşağıdaki Özelliklerin bulunması gerekmektedir:
+2- Hayvanat bahçesi yazılımdaki Kısıtlamalar
 --
 <pre>
 • Giriş Ekranında;
 
-◦ Hayvanat bahçesi bilgileri yer almalıdır.
-◦ Hayvanat bahçesi gelir gider, su limiti eklemeleri bu ekrandan yapılabilmelidir.
-◦ Hayvanat bahçesi maaş ödemesi bu ekrandan yapılabilmelidir.
-◦ Bakıcı ekle butonu olmalıdır.(Bakıcı ekleme ekranı açılmalı)
-◦ Hayvan ekle butonu olmalıdır.(Hayvan ekleme ekranı açılmalı)
-◦ Bakıcı&Hayvan listele butonu olmalı.(Bakıcı&Hayvan listesi ekranı açılmalı)
+◦ Hayvanat bahçesi gelir gider, su limiti eklemeleri sadece pozitif değerler ile yapılabilmektedir. Ayrıca gider için bütçenin yeterli olması gerekir.
+◦ Hayvanat bahçesi maaş ödemesi en az 1 çalışan olduğunda ve bütçe yeterli olduğunda yapılabilir.
+◦ Bakıcı&Hayvan listeleme sayfasına gidebilmek için en az 1 hayvan veya 1 bakıcı gerekmektedir.
+◦ Bakıcı&Hayvan atama sayfasına gidebilmek için en az 1 bakıcı ve 1 bakıcısı olmayan hayvan gerekmektedir.
 
 • Bakıcı ve Hayvan Ekleme Ekranlarında;
 
-◦ Bilgileri girilecektir.(İsim, yaş, çalışan türü vs)
-◦ Bakıcı için maaşı otomatik hesaplanıp ekranda gösterilecektir.
-◦ Bakıcı ekle yapıldığında hayvanat bahçesi ekranına yönlenmelidir.
-◦ Bu ekranlarda UIStackView kullanılmalıdır.
+◦ Bilgilerin eksiksiz girilmesi gerekmektedir.
+◦ Yeni hayvan eklenmesi için yeterince su bulunması gerekmektedir.
+◦ Bakıcı için maaşı otomatik hesaplanıp bakıcı oluşturulduğunda Alert şeklinde gösterilir.
 
 • Bakıcı&Hayvan Listesi Ekranında;
 
-◦ Bakıcı ve Hayvanlar listelenmelidir.
-◦ UITableView veya UICollectionView kullanılmalıdır.
-◦ Listede bakıcılar için hayvanlar, hayvanlar için bakıcı bilgisi mutlaka bulunmalıdır.
-◦ Listede bir hayvana bastığımda kendi sesini çıkarmalıdır. Gerçek ses bekliyoruz bu sefer :)
+◦ Bakıcı ve Hayvanlar 2 farklı sectionda gösterilmektedir.
+◦ Listede bakıcılar için hayvanlar, hayvanlar için bakıcı bilgisi gösterilmektedir.
+◦ Listede bir hayvana bastığımda kendi sesini çıkarmaktadır.
+
+• Bakıcı&Hayvan Atama Ekranında;
+
+◦ Bakıcı ve hayvanın seçilmesi gerekmektedir.
 </pre>
 
-3- https://programming-quotes-api.herokuapp.com/index.html üzerinden random endpointi kullanılarak aşağıdaki özellikler sağlanacaktır.
+3- Random Quote Yazılımı
 --
 <pre>
-• Tek bir ekran üzerinde multiline(Uzunluğa göre satır sayısı değişmeli) label ve button olacak.
-• Buttona her bastığımda yeni bir random quote çekecek ve label içerisinde değeri gösterecek.
-• Uygulama ilk açıldığında random quote göstererek başlamalı.
+• Uygulama ilk açıldığında bir quote rastgele gösterilir, butona her basıldığında yeni quote getirilir.
 </pre>
-4- Pragmatic Programmer 8,9 chapterlar özetlenmelidir.
---
-
-Kolay gelsin :)
 
 --
-HAVE A GOOD DAY..
 
-Kaan YILDIRIM
+Geri dönüşler için şimdiden teşekkürler.
+
+--
